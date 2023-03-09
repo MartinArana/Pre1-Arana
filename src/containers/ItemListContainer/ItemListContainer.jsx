@@ -12,15 +12,19 @@ function ItemListContainer({ greeting }) {
 
   useEffect(() => {
     const promesaItem = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            let search = products.filter((item) => item.category === idCategory);
-            resolve(search);
-        }, 2000);
+      setTimeout(() => {
+        if (idCategory) {
+          let search = products.filter((item) => item.category === idCategory);
+          resolve(search);
+        } else {
+          resolve(products);
+        }
+      },);
     });
     promesaItem.then((respuesta) => {
       setUser(respuesta);
-  });
-}, []);
+    });
+  }, [idCategory]);
 
   // useEffect(() => {
   //   fetch("https://reqres.in/api/users")
