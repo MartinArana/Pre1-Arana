@@ -4,11 +4,12 @@ import { products } from "../../helpers/gFetch";
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
 
-function ItemDetailContainer() {
-    const [users, setUser] = useState({});
+function ItemDetailContainer({ }) {
+    const [user, setUser] = useState({});
+    const [isLoading, setLoading] = useState(true);
 
     const params = useParams();
-    const {idUser} = params.idUser;
+    const { idUser } = params.idUser;
 
     useEffect(() => {
         const promesaItem = new Promise((resolve, reject) => {
@@ -18,12 +19,18 @@ function ItemDetailContainer() {
             }, 2000);
         });
 
-        promesaItem.then((respuesta) => setUser(respuesta));
+        promesaItem.then((respuesta) => {
+            setUser(respuesta);
+            setLoading(false);
+        });
     }, []);
 
     return (
         <>
-            <ItemDetail users={users} />
+            {isLoading ? (
+                <p>Loading...</p>
+            ) : (<ItemDetail user={user} />
+            )}
         </>
     );
 }
