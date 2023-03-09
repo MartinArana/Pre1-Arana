@@ -7,8 +7,8 @@ const ItemDetail = ({user}) => {
         <div>
         <li className="item-card" key={user.id}>
         <img src={user.img} alt="imágen del user" />
-        <h4>{`${user.first_name}`}</h4>
-        <small>{user.email}</small>
+        <h4>{`${user.name}`}</h4>
+        <small>{user.category}</small>
         <p>Precio: $ {user.price}</p>
         </li>
     </div>

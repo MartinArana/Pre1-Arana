@@ -14,8 +14,10 @@ function NavBar() {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <Link className='link' to="/">Inicio</Link>
-                            <Link className='link' to="/detalle">Detalle</Link>
+                            <Link className='link' to="/category/diseños">Inicio</Link>
+                            <Link className='link' to="/detail">Detalle</Link>
+                            <Link className='link' to="/category/personajes">Personajes</Link>
+                            <Link className='link' to="/category/accesorios">Accesorios</Link>
                         </Nav>
                         <Nav>
                             <p className='cart-number'>

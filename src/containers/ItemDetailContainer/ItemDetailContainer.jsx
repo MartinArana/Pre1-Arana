@@ -9,13 +9,13 @@ function ItemDetailContainer({ }) {
     const [isLoading, setLoading] = useState(true);
 
     const params = useParams();
-    const { idUser } = params.idUser;
+    const { idUser } = params;
 
     useEffect(() => {
         const promesaItem = new Promise((resolve, reject) => {
             setTimeout(() => {
-                let encontrado = products.find((item) => item.id === Number(idUser));
-                resolve(encontrado);
+                let search = products.find((item) => item.id === Number(idUser));
+                resolve(search);
             }, 2000);
         });
 
