@@ -1,0 +1,21 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.carro {
+    position: absolute;
+    margin-top: 1rem;
+    width: 27px;
+    height: 27px;
+    float: right;
+    top: 10px;
+    right: 150px;
+}
+
+.number{
+    position: absolute;
+    padding: 5px 6px;
+    margin-top: -7px;
+}
