@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import ItemList from "../../components/ItemList/ItemList";
 import { products } from "../../helpers/gFetch";
 import { useParams } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 
 function ItemListContainer({ greeting }) {
   const [users, setUser] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
 
   const params = useParams();
-  const {idCategory} = params;
+  const { idCategory } = params;
 
   useEffect(() => {
     const promesaItem = new Promise((resolve, reject) => {
@@ -18,30 +20,26 @@ function ItemListContainer({ greeting }) {
           resolve(search);
         } else {
           resolve(products);
+          setIsLoading(false)
         }
-      },);
+      }, 3000);
     });
     promesaItem.then((respuesta) => {
       setUser(respuesta);
+      setIsLoading(false);
     });
   }, [idCategory]);
 
-  // useEffect(() => {
-  //   fetch("https://reqres.in/api/users")
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((json) => {
-  //       console.log("json", json);
-  //       setUsers(json.data);
-  //     });
-  // }, []);
-
   return (
-    <>
-      <h1>{greeting}</h1>
-      <ItemList users={users} />
-    </>
+    <div className="greeting-container">
+      <h1 className="title-itemlc">{greeting}</h1>
+      {
+        isLoading ?
+          <Loader />
+          :
+          <ItemList users={users} />
+      }
+    </div>
   );
 }
 

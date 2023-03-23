@@ -5,12 +5,10 @@ const Item = ({ user }) => {
   return (
     <div>
       <li className="item-card" key={user.id}>
-        <img src={user.img} />
-        <h4>{`${user.name}`}</h4>
-        <small>{user.category}</small>
-        <p>Precio: $ {user.price}</p>
         <Link to={`/detalle/${user.id}`}>
-          <button>Ver mas</button>
+        <img src={user.img} />
+        <h4 className="title-card">{`${user.name}`}</h4>
+        <p className="price">Precio: $ {user.price}</p>
         </Link>
       </li>
     </div>
