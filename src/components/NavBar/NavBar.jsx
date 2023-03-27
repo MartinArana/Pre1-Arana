@@ -20,9 +20,9 @@ function NavBar() {
                             <Link className='link' to="/category/accesorios">ACCESORIOS</Link>
                         </Nav>
                         <Nav>
-                            <p>
+                            <Link to="/cart">
                                 <CartWidget/>
-                            </p>
+                            </Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

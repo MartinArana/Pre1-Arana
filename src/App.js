@@ -5,6 +5,8 @@ import ItemListContainer from './containers/ItemListContainer/ItemListContainer'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import NotFound from './pages/NotFound/NotFound';
 import { CartContextProvider } from './context/cartContext';
+import CartContainer from './containers/CartContainer/CartContainer';
+
 
 function App() {
   let greeting = "Rick & Morty Shop"
@@ -17,6 +19,7 @@ function App() {
             <Route path='/' element={<ItemListContainer greeting={greeting} />} />
             <Route path="/category/:idCategory" element={<ItemListContainer greeting={"Hola, bienvenido!"} />} />
             <Route path='/detalle/:idUser' element={<ItemDetailContainer />} />
+            <Route path='/cart' element={<CartContainer/>} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </BrowserRouter>

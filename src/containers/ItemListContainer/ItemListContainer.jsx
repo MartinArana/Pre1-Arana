@@ -1,9 +1,49 @@
 import "./ItemListContainer.css";
-import { useEffect, useState } from "react";
+import { cloneElement, useEffect, useState } from "react";
 import ItemList from "../../components/ItemList/ItemList";
 import { products } from "../../helpers/gFetch";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
+
+// config firebase------------------------------------------------------------------------
+
+import { collection, getDocs, where, query } from "firebase/firestore"
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCyOF_zWr_W2_i-J6Rz1m2KmreaO2D7IEo",
+  authDomain: "reactproyect-35144.firebaseapp.com",
+  projectId: "reactproyect-35144",
+  storageBucket: "reactproyect-35144.appspot.com",
+  messagingSenderId: "872574144180",
+  appId: "1:872574144180:web:727b50c14a5b759fe891e1"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function getItemsFromDatabase() {
+  const productsCollectionRef = collection(db, "products");
+  let snapshotProducts = await getDocs(productsCollectionRef)
+  const documents = snapshotProducts.docs;
+
+  const dataProducts = documents.map((doc) => ({ ...doc.data(), id: doc.id }))
+  return dataProducts;
+}
+
+async function getItemsByCategoryFromDatabase(categoryURL) {
+  const productsCollectionRef = collection(db, "products");
+  const q = query(productsCollectionRef, where("category", "==", categoryURL));
+
+  let snapshotProducts = await getDocs(q)
+  const documents = snapshotProducts.docs;
+
+  const dataProducts = documents.map((doc) => ({ ...doc.data(), id: doc.id }))
+  return dataProducts;
+}
+//config firebase---------------------------------------------------------------------------
 
 function ItemListContainer({ greeting }) {
   const [users, setUser] = useState([]);
@@ -12,23 +52,21 @@ function ItemListContainer({ greeting }) {
   const params = useParams();
   const { idCategory } = params;
 
-  useEffect(() => {
-    const promesaItem = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (idCategory) {
-          let search = products.filter((item) => item.category === idCategory);
-          resolve(search);
-        } else {
-          resolve(products);
-          setIsLoading(false)
-        }
-      }, 3000);
-    });
-    promesaItem.then((respuesta) => {
+  async function leerDatos() {
+    if (idCategory === undefined) {
+      let respuesta = await getItemsFromDatabase();
       setUser(respuesta);
       setIsLoading(false);
-    });
-  }, [idCategory]);
+    } else {
+      let respuesta = await getItemsByCategoryFromDatabase(idCategory);
+      setUser(respuesta);
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    leerDatos();
+  }, [idCategory])
 
   return (
     <div className="greeting-container">
