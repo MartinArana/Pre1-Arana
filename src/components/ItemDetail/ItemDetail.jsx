@@ -10,10 +10,10 @@ const ItemDetail = ({ user }) => {
   const { addItem } = useContext(cartContext);
 
   function addToCart(count) {
-    alert(`Agregaste ${count} items al carrito`)
     addItem(user, count);
     setIsCount(false);
   };
+  
   return (
     <div>
       <div>
