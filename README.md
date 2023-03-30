@@ -15,14 +15,14 @@ El sitio está hecho con HTML, CSS, JS, y React, tambien utilizando el framework
 
 ## Tecnologias utilizadas:
 
-bootstrap: “^5.2.3”
-firebase: “^9.18.0”
-react: “^18.2.0”
-react-bootstrap: “^2.7.0”
-react-dom: “^18.2.0”
-"react-router-dom": "^6.8.2"
-"react-scripts": "5.0.1"
-"web-vitals": "^2.1.4"
+- bootstrap: "^5.2.3"
+- firebase: "^9.18.0"
+- react: "^18.2.0"
+- react-bootstrap: "^2.7.2"
+- react-dom: "^18.2.0"
+- react-router-dom: "^6.8.2"
+- react-scripts: "5.0.1"
+- web-vitals: "^2.1.4"
 
 ## Acceso a la Web page del proyecto
 
