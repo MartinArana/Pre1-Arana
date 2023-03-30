@@ -1,30 +1,28 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useNavigate } from "react-router-dom";
 import { createOrder } from '../../database/firestore'
 import CheckOutForm from './CheckOutForm'
 
 const CheckOutCart = ({ cart, total }) => {
-    const [orderId, setOrderId] = useState(null)
+    const navigateTo = useNavigate();
 
-    async function handleCheckOut(userData) {
+    async function handleCheckout(userData) {
         const orderData = {
             buyer: userData,
             items: cart,
             total: total,
             timestamp: new Date(),
-        }
+        };
         const id = await createOrder(orderData);
-        setOrderId(id);
 
-
+        navigateTo(`/checkout/${id}`);
     }
 
     return (
         <div>
-            {
-                    <CheckOutForm onSubmit={handleCheckOut} />
-            }
+            <CheckOutForm onSubmit={handleCheckout} />
         </div>
-    )
+    );
 }
 
 export default CheckOutCart

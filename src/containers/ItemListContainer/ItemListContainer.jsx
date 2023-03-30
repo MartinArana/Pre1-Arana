@@ -1,72 +1,73 @@
-import "./ItemListContainer.css";
-import { cloneElement, useEffect, useState } from "react";
-import ItemList from "../../components/ItemList/ItemList";
-import { products } from "../../helpers/gFetch";
+import { collection, getDocs, getFirestore, where, query } from "firebase/firestore"
+import {  useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ItemList from "../../components/ItemList/ItemList";
 import Loader from "../../components/Loader/Loader";
+import "./ItemListContainer.css";
 
 // config firebase------------------------------------------------------------------------
 
-import { collection, getDocs, where, query } from "firebase/firestore"
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+// import { initializeApp } from "firebase/app";
+// import { getFirestore } from "firebase/firestore";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCyOF_zWr_W2_i-J6Rz1m2KmreaO2D7IEo",
-  authDomain: "reactproyect-35144.firebaseapp.com",
-  projectId: "reactproyect-35144",
-  storageBucket: "reactproyect-35144.appspot.com",
-  messagingSenderId: "872574144180",
-  appId: "1:872574144180:web:727b50c14a5b759fe891e1"
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCyOF_zWr_W2_i-J6Rz1m2KmreaO2D7IEo",
+//   authDomain: "reactproyect-35144.firebaseapp.com",
+//   projectId: "reactproyect-35144",
+//   storageBucket: "reactproyect-35144.appspot.com",
+//   messagingSenderId: "872574144180",
+//   appId: "1:872574144180:web:727b50c14a5b759fe891e1"
+// };
 
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// const app = initializeApp(firebaseConfig);
+// const db = getFirestore(app);
 
-async function getItemsFromDatabase() {
-  const productsCollectionRef = collection(db, "products");
-  let snapshotProducts = await getDocs(productsCollectionRef)
-  const documents = snapshotProducts.docs;
+// async function getItemsFromDatabase() {
+//   const productsCollectionRef = collection(db, "products");
+//   let snapshotProducts = await getDocs(productsCollectionRef)
+//   const documents = snapshotProducts.docs;
 
-  const dataProducts = documents.map((doc) => ({ ...doc.data(), id: doc.id }))
-  return dataProducts;
-}
+//   const dataProducts = documents.map((doc) => ({ ...doc.data(), id: doc.id }))
+//   return dataProducts;
+// }
 
-async function getItemsByCategoryFromDatabase(categoryURL) {
-  const productsCollectionRef = collection(db, "products");
-  const q = query(productsCollectionRef, where("category", "==", categoryURL));
+// async function getItemsByCategoryFromDatabase(categoryURL) {
+//   const productsCollectionRef = collection(db, "products");
+//   const q = query(productsCollectionRef, where("category", "==", categoryURL));
 
-  let snapshotProducts = await getDocs(q)
-  const documents = snapshotProducts.docs;
+//   let snapshotProducts = await getDocs(q)
+//   const documents = snapshotProducts.docs;
 
-  const dataProducts = documents.map((doc) => ({ ...doc.data(), id: doc.id }))
-  return dataProducts;
-}
+//   const dataProducts = documents.map((doc) => ({ ...doc.data(), id: doc.id }))
+//   return dataProducts;
+// }
 //config firebase---------------------------------------------------------------------------
 
 function ItemListContainer({ greeting }) {
   const [users, setUser] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
-
-  const params = useParams();
-  const { idCategory } = params;
-
-  async function leerDatos() {
-    if (idCategory === undefined) {
-      let respuesta = await getItemsFromDatabase();
-      setUser(respuesta);
-      setIsLoading(false);
-    } else {
-      let respuesta = await getItemsByCategoryFromDatabase(idCategory);
-      setUser(respuesta);
-      setIsLoading(false);
-    }
-  }
+  const {idCategory} = useParams ();
 
   useEffect(() => {
-    leerDatos();
-  }, [idCategory])
+    const db = getFirestore();
+    const queryCollection = collection(db, "products");
+    const queryFiltrada = idCategory
+      ? query(queryCollection, where("categoria", "==", idCategory))
+      : queryCollection;
+
+    getDocs(queryFiltrada)
+      .then((respuesta) =>
+        setUser(
+          respuesta.docs.map((user) => ({
+            id: user.id,
+            ...user.data(),
+          }))
+        )
+      )
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
+  }, [idCategory]);
 
   return (
     <div className="greeting-container">

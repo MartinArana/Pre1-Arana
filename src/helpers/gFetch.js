@@ -29,5 +29,5 @@ export let products = [
 
     { id: 15, name: "Rick & Morty Mug - I`m Pickle Rick", stock: "13", category: "accesorios", price: 3999, img: "https://rickandmortyshop.com/wp-content/uploads/2021/04/rick-morty-mug-im-pickle-riiick-coffee-673-400x400.jpg", cantidad: 1 },
     
-    { id: 16, name: "Jordan Cute Face Rick Sanchez", stock: "15", category: "indumentaria", price: 3999, img: "https://rickandmortyshop.com/wp-content/uploads/2021/04/rick-and-morty-jordan-sneakers-cute-face-sanchez-men-us6-5-jd-343-400x400.jpg", cantidad: 1 },
+    { id: 16, name: "Jordan Cute Face Rick Sanchez", stock: "15", category: "indumentaria", price: 29999, img: "https://rickandmortyshop.com/wp-content/uploads/2021/04/rick-and-morty-jordan-sneakers-cute-face-sanchez-men-us6-5-jd-343-400x400.jpg", cantidad: 1 },
 ];
