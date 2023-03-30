@@ -13,7 +13,7 @@ const ItemDetail = ({ user }) => {
     addItem(user, count);
     setIsCount(false);
   };
-  
+
   return (
     <div>
       <div>

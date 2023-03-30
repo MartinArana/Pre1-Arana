@@ -43,7 +43,7 @@
 .item-card:hover{
     cursor: pointer;
     box-shadow: 0px 6px 5px #1df900;
-    transform: translateY(-5px);
+    /* transform: translateY(-5px); */
 }
 
 h2 {

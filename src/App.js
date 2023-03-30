@@ -12,14 +12,14 @@ function App() {
   let greeting = "Rick & Morty Shop"
   return (
     <>
-      <CartContextProvider>
+      <CartContextProvider> 
         <BrowserRouter>
           < Navbar />
           <Routes>
             <Route path='/' element={<ItemListContainer greeting={greeting} />} />
-            <Route path="/category/:idCategory" element={<ItemListContainer greeting={"Hola, bienvenido!"} />} />
+            <Route path="/category/:idCategory" element={<ItemListContainer greeting={"Rick & Morty Shop"} />} />
             <Route path='/detalle/:idUser' element={<ItemDetailContainer />} />
-            <Route path='/cart' element={<CartContainer/>} />
+            <Route path='/cart' element={<CartContainer />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </BrowserRouter>

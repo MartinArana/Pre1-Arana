@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 
 // config firebase------------------------------------------------------------------------
-import { initializeApp } from "firebase/app";
+import { initializeApp, setLogLevel } from "firebase/app";
 import { getFirestore, doc, getDoc, collection } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -45,7 +45,8 @@ function ItemDetailContainer({ }) {
             .then((respuesta) => {
                 setUser(respuesta);
             })
-            .catch((error) => alert(error));
+            .catch((error) => alert(error))
+            .finally(() => setIsLoading(false))
     }, []);
 
     return (
