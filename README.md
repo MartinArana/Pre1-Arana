@@ -3,17 +3,17 @@
 
 ![Badge en Desarollo](https://img.shields.io/badge/STATUS-EN%20DESAROLLO-green) 👷‍♂
 
-Rick and Morty shop es un eccomerce basado en los personajes y accesorios de la serie Rick & Morty. Trabajado con el framework REACT
+Rick and Morty shop es un eccomerce 🛒 basado en los personajes y accesorios de la serie Rick & Morty. Trabajado con el framework REACT
 
 
-## Funcionalidad
+## Funcionalidad 🛠
 
 El sitio está hecho con HTML, CSS, JS, y React, tambien utilizando el framework Bootstrap.
 
 
 
 
-## Tecnologias utilizadas:
+## Tecnologias utilizadas 💻
 
 - bootstrap: "^5.2.3"
 - firebase: "^9.18.0"
