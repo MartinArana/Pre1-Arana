@@ -22,10 +22,10 @@ import "./CartWidget.css"
 import image from "./carrito.png"
 
 const CartWidget = () => {
-  const { cantidadTotal } = useCartContext()
+  const { totalItems } = useCartContext()
   return (
     <div>
-        { cantidadTotal() > 0 && cantidadTotal()  }
+        <span>{ totalItems() > 0 && totalItems()  }</span>
         <img src={`${image}`} alt='imagen' className="carro"/>
     </div>
   )

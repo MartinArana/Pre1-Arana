@@ -7,17 +7,12 @@ import { Link } from 'react-router-dom';
 
 const ItemDetail = ({ user }) => {
   const [isCount, setIsCount] = useState(true)
-  const { addItem } = useCartContext();
+  const { addToCart } = useCartContext();
 
-  function addToCart(count) {
-    addItem({...user, count});
+  const onAdd = (count) => {
+    addToCart ({...user, count});
     setIsCount(false);
   };
-
-  // const addToCart = (count) => {
-  //   addItem({ ...user, count });
-  //   setIsCount(false);
-  // };
 
   return (
     <div>
@@ -28,7 +23,7 @@ const ItemDetail = ({ user }) => {
           <small>{user.category}</small>
           <p>Precio: $ {user.price}</p>
           {isCount ? (
-            <ItemCount addToCart={addToCart} initial={1} stock={user.stock} />
+            <ItemCount onAdd={onAdd} initial={1} stock={user.stock} />
           ) : (
             <div className="btn-vc">
               <Link to="/cart">
