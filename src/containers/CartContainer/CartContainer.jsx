@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import cartContext from '../../context/cartContext'
+import {useCartContext} from "../../context/cartContext"
 import CheckOutCart from './CheckOutCart'
 
 const CartContainer = () => {
 
-    const { cart, removeItem, countInCart } = useContext(cartContext)
+    const { cart, removeItem, countInCart } = useContext(useCartContext)
 
     return (
         <>
