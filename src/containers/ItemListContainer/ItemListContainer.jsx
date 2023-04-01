@@ -14,7 +14,7 @@ function ItemListContainer({ greeting }) {
     const db = getFirestore();
     const queryCollection = collection(db, "products");
     const queryFiltrada = idCategory
-      ? query(queryCollection, where("categoria", "==", idCategory))
+      ? query(queryCollection, where("category", "==", idCategory))
       : queryCollection;
 
     getDocs(queryFiltrada)

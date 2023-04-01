@@ -41,7 +41,7 @@ const CartContainer = () => {
                 </tbody>
             </table>
             <div className='cartList-detail'>
-                <h4 className='total'>El total de tu compra es: $...</h4>
+                <h4 className='total'>El total de tu compra es: ${countInCart}</h4>
             </div>
             <CheckOutCart total={countInCart()} cart={cart} />
         </>
