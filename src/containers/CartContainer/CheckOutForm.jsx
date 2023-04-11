@@ -8,7 +8,6 @@ export default function CheckoutForm(props) {
         phone: "",
     });
 
-    console.log(userData);
 
     function handleChange(evt) {
         const value = evt.target.value;
