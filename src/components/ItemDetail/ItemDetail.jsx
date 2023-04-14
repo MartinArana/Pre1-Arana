@@ -9,8 +9,8 @@ const ItemDetail = ({ user }) => {
   const [isCount, setIsCount] = useState(true)
   const { addToCart } = useCartContext();
 
-  const onAdd = (count) => {
-    addToCart ({...user, count});
+  const onAdd = (cantidad) => {
+    addToCart ({...user, cantidad});
     setIsCount(false);
   };
 

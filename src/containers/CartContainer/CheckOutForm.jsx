@@ -26,7 +26,8 @@ export default function CheckoutForm(props) {
         });
     }
 
-    function submitData() {
+    function submitData(e) {
+        e.preventDefault()
         props.onSubmit(userData)
     }
 

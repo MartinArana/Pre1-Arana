@@ -32,15 +32,16 @@ export const CartContextProvider = ({ children }) => {
         return cart.reduce((count, user) => (count += user.cantidad * user.price), 0);
     }
 
-
     //si esta en el carrito
     const isInCart = (id) => {
         return cart.some((user) => user.id === id);
     }
+
     //cantidad total
     const totalItems = () => {
         return cart.reduce((count, user) => (count += user.cantidad), 0);
     }
+
     return (
         <cartContext.Provider value={{
             cart,

@@ -30,8 +30,8 @@ const CartContainer = () => {
                                 </td>
                                 <td>Producto: {item.name}</td>
                                 <td>Precio: $ {item.price}</td>
-                                <td>Unidades: {item.count}</td>
-                                <td>Total: $ {item.count * item.price}</td>
+                                <td>Unidades: {item.cantidad}</td>
+                                <td>Total: $ {item.cantidad * item.price}</td>
                                 <td>
                                     <button onClick={() => removeItem(item.id)} className="btn-remove"> x </button>
                                 </td>
